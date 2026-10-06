@@ -4,7 +4,7 @@ class Expedition(models.Model):
     references= models.CharField(max_length=100,unique=True)
     ville_depart= models.CharField(max_length=100)
     ville_arrivee= models.CharField(max_length=100)
-    poids_kg= models.DecimalField()
+    poids_kg= models.DecimalField(max_digits=10, decimal_places=2)
     date_souhaitee= models.DateField()
     description= models.TextField()
     status=models.CharField(max_length=20,choices=[

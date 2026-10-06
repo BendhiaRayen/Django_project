@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 class Utilisateur(AbstractUser):
-    user_id = models.AutoField(primary_key=True,max_length=8)
+    user_id = models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
     telephone = models.CharField(max_length=15,blank=True, null=True)
     role = models.CharField(max_length=20,choices=[

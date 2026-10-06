@@ -1,6 +1,6 @@
 from django.db import models
 class Offre(models.Model):
-    prix = models.DecimalField()
+    prix = models.DecimalField(max_digits=10, decimal_places=2)
     delai_jours = models.PositiveIntegerField()
     statut = models.CharField(max_length=20, choices=[
         ('p','proposee'),
@@ -11,7 +11,7 @@ class Offre(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     expedition = models.ForeignKey('ExpeditionApp.Expedition', on_delete=models.CASCADE, related_name='offres')
-    transporteur = models.ForeignKey('EntrepriseApp', on_delete=models.CASCADE, related_name='offres_transport')
+    transporteur = models.ForeignKey('EntrepriseApp.Entreprise', on_delete=models.CASCADE, related_name='offres_transport')
     vehicule = models.ForeignKey('VehiculeApp.Vehicule', on_delete=models.CASCADE, null=True)
 
 

@@ -12,6 +12,6 @@ class Offre(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     expedition = models.ForeignKey('ExpeditionApp.Expedition', on_delete=models.CASCADE, related_name='offres')
     transporteur = models.ForeignKey('EntrepriseApp.Entreprise', on_delete=models.CASCADE, related_name='offres_transport')
-    vehicule = models.ForeignKey('VehiculeApp.Vehicule', on_delete=models.CASCADE, null=True)
+    vehicule = models.ForeignKey('VehiculeApp.Vehicule', on_delete=models.CASCADE, related_name='offres_vehicule')
 
 

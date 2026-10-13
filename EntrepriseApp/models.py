@@ -16,10 +16,9 @@ matricule_fiscale_validator =RegexValidator(
 )
 
 class Utilisateur(AbstractUser):
-    user_id = models.AutoField(primary_key=True)
-    registration_code = models.CharField(
+    user_id = models.CharField(
         max_length=8,
-        unique=True,
+        primary_key=True,
         editable=False,
         validators=[
             RegexValidator(
@@ -33,24 +32,24 @@ class Utilisateur(AbstractUser):
     role = models.CharField(max_length=20,choices=[
         ('admin','Admin'),
         ('c','Chargeur'),
-        ('t','Transporteur')])
+        ('t','Transporteur')],default='c')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        if not self.registration_code:
+        if not self.user_id:
             year = timezone.localdate().strftime('%y')
             prefix = f'{year}user'
 
             last_user = (
                 Utilisateur.objects
-                .filter(registration_code__startswith=prefix)
-                .order_by('-registration_code')
+                .filter(user_id__startswith=prefix)
+                .order_by('-user_id')
                 .first()
             )
 
             if last_user:
-                next_number = int(last_user.registration_code[-2:]) + 1
+                next_number = int(last_user.user_id[-2:]) + 1
             else:
                 next_number = 0
 
@@ -59,8 +58,9 @@ class Utilisateur(AbstractUser):
                     f'La limite de 100 utilisateurs pour l\'année {year} est atteinte.'
                 )
 
-            self.registration_code = f'{prefix}{next_number:02d}'
+            self.user_id = f'{prefix}{next_number:02d}'
 
+        self.full_clean()
         super().save(*args, **kwargs)
     
 class Entreprise(models.Model): 
@@ -75,3 +75,7 @@ class Entreprise(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     gerant = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='entreprise')
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)

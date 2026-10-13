@@ -1,10 +1,11 @@
-from datetime import timezone
+from django.utils import timezone
 
 from django.db import models
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, RegexValidator
 from django.core.exceptions import ValidationError
 class Expedition(models.Model):
-    references= models.CharField(max_length=100,unique=True)
+    references= models.CharField(max_length=12,unique=True,editable=False,validators=[
+        RegexValidator(regex=r'^EXP-\d{2}-\d{5}$',message="Le format doit être EXP-AA-NNNNN.")])
     ville_depart= models.CharField(max_length=100)
     ville_arrivee= models.CharField(max_length=100)
     poids_kg= models.DecimalField(max_digits=10, decimal_places=2,validators=[MinValueValidator(0.01,"Le poids doit être supérieur à 0")])
@@ -22,12 +23,12 @@ class Expedition(models.Model):
     entreprise = models.ForeignKey('EntrepriseApp.Entreprise', on_delete=models.CASCADE, related_name='expeditions')
     def clean(self):
         super().clean()
-        if self.entreprise_id and self.entreprise.type_entreprise != 'chargeur':
+        if self.entreprise_id and self.entreprise.type_entreprise != 'c':
             raise ValidationError("Seuls les chargeurs peuvent créer des expeditions.")
     @classmethod
     def _generate_reference(cls):
-        annee = timezone.now().strftime("%Y")
-        prefix = f"EXP_{annee}_"
+        annee = timezone.now().strftime("%y")
+        prefix = f"EXP-{annee}-"
         dernier=cls.objects.filter(references__startswith=prefix).order_by('references').last()
         compteur = int(dernier.references[-5:]) + 1 if dernier else 1
         if compteur > 99999:

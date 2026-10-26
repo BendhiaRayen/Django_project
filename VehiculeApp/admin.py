@@ -4,6 +4,13 @@ from django.contrib import admin
 from VehiculeApp.models import Vehicule
 @admin.register(Vehicule)
 class VehiculeAdmin(admin.ModelAdmin):
+    list_display = (
+    'immatriculation',
+    'capacite_kg',
+    'created_at',
+    'disponibilite',
+     )
+    search_fields = ('immatriculation', 'type_vehicule')
     readonly_fields = ('created_at', 'updated_at')
     fieldsets = (
         ('Identification', {
@@ -17,5 +24,5 @@ class VehiculeAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
         }),
     )
-# Register your models here.
+  
 #admin.site.register(Vehicule)

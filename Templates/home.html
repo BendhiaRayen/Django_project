@@ -1,0 +1,18 @@
+{% extends "expedition/base.html" %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+<section class="card" style="position:relative;overflow:hidden;padding:clamp(34px,7vw,78px);background:linear-gradient(135deg,#171d35 0%,#302a73 58%,#635bff 100%);color:white;">
+    <div style="position:absolute;right:-80px;top:-130px;width:370px;height:370px;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 36px rgba(255,255,255,.035),0 0 0 72px rgba(255,255,255,.025);"></div>
+    <div style="position:relative;max-width:680px;">
+        <p class="eyebrow" style="color:#b9b5ff;">Plateforme de gestion</p>
+        <h1 style="font-size:clamp(2.7rem,6vw,5rem);">Pilotez votre activité, simplement.</h1>
+        <p style="max-width:570px;margin:24px 0 32px;color:#d8d8e8;font-size:1.06rem;line-height:1.75;">Un espace central pour organiser vos opérations, vos ressources et vos flux logistiques avec clarté.</p>
+        <div class="form-actions" style="margin-top:0;"><a class="button" style="color:#322b78;background:#fff;box-shadow:none;" href="{% url 'Expedition:list_class' %}">Voir les expéditions&nbsp; →</a><a class="button" style="color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);box-shadow:none;" href="/admin/">Administration</a></div>
+    </div>
+</section>
+<div class="platform-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px;">
+    <a class="card platform-card" href="{% url 'Expedition:list_class' %}" style="padding:27px;transition:transform .2s,box-shadow .2s;"><span style="display:grid;place-items:center;width:44px;height:44px;border-radius:13px;color:#635bff;background:#eeedff;font-size:1.25rem;">↗</span><h2 style="margin-top:18px;font-size:1.18rem;">Expéditions</h2><p class="subtle" style="font-size:.9rem;">Créez, suivez et gérez vos envois au quotidien.</p><span style="color:#635bff;font-size:.85rem;font-weight:750;">Ouvrir le module →</span></a>
+    <a class="card platform-card" href="/admin/" style="padding:27px;transition:transform .2s,box-shadow .2s;"><span style="display:grid;place-items:center;width:44px;height:44px;border-radius:13px;color:#16836c;background:#e7f8f2;font-size:1.25rem;">◈</span><h2 style="margin-top:18px;font-size:1.18rem;">Espace de gestion</h2><p class="subtle" style="font-size:.9rem;">Accédez aux données et aux outils de votre projet.</p><span style="color:#16836c;font-size:.85rem;font-weight:750;">Ouvrir l'administration →</span></a>
+</div>
+<style>.platform-card:hover{transform:translateY(-3px);box-shadow:0 22px 45px rgba(23,32,51,.13)}@media(max-width:700px){.platform-grid{grid-template-columns:1fr!important}}</style>
+{% endblock %}

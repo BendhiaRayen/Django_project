@@ -1,0 +1,19 @@
+{% extends "expedition/base.html" %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+<section class="card" style="position:relative;overflow:hidden;padding:clamp(34px,7vw,82px);background:linear-gradient(135deg,#171d35 0%,#302a73 58%,#635bff 100%);color:white;">
+    <div style="position:absolute;right:-90px;top:-130px;width:360px;height:360px;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 34px rgba(255,255,255,.035),0 0 0 68px rgba(255,255,255,.025);"></div>
+    <div style="position:relative;max-width:650px;">
+        <p class="eyebrow" style="color:#b9b5ff;">Plateforme logistique</p>
+        <h1 style="font-size:clamp(2.7rem,6vw,5rem);">Les expéditions, simplement.</h1>
+        <p style="max-width:540px;margin:24px 0 32px;color:#d8d8e8;font-size:1.06rem;line-height:1.75;">Centralisez vos envois, suivez chaque trajet et gardez une vision claire de votre activité logistique.</p>
+        <div class="form-actions" style="margin-top:0;"><a class="button" style="color:#322b78;background:#fff;box-shadow:none;" href="{% url 'Expedition:list_class' %}">Accéder aux expéditions&nbsp; →</a><a class="button" style="color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);box-shadow:none;" href="{% url 'Expedition:create_expedition' %}">Créer un envoi</a></div>
+    </div>
+</section>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;">
+    <div class="card" style="padding:23px;"><span style="font-size:1.5rem;">◈</span><h2 style="margin-top:14px;font-size:1.05rem;">Vue centralisée</h2><p class="subtle" style="font-size:.88rem;">Toutes vos expéditions réunies au même endroit.</p></div>
+    <div class="card" style="padding:23px;"><span style="font-size:1.5rem;">↗</span><h2 style="margin-top:14px;font-size:1.05rem;">Suivi précis</h2><p class="subtle" style="font-size:.88rem;">Accédez rapidement aux détails de chaque envoi.</p></div>
+    <div class="card" style="padding:23px;"><span style="font-size:1.5rem;">✓</span><h2 style="margin-top:14px;font-size:1.05rem;">Gestion fluide</h2><p class="subtle" style="font-size:.88rem;">Créez et mettez à jour vos opérations en quelques clics.</p></div>
+</div>
+<style>@media(max-width:700px){main>div[style*="grid-template-columns"]{grid-template-columns:1fr!important}}</style>
+{% endblock %}

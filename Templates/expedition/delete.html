@@ -1,12 +1,1 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suppression de l'expédition</title>
-</head>
-<body>
-    <h2>L'expédition {{ choix.references }} va être supprimée.</h2>
-    <a href="{% url 'Expedition:list_expeditions' %}">Retour à la liste</a>
-</body>
-</html>
+{% extends "expedition/base.html" %}{% block title %}Supprimer l'expédition{% endblock %}{% block content %}<section class="card confirm-card" style="margin:48px auto 0"><div class="confirm-icon">!</div><p class="eyebrow">Action irréversible</p><h1>Supprimer l'expédition ?</h1><p class="subtle">L'expédition « {% if expedition %}{{ expedition.references }}{% else %}{{ choix.references }}{% endif %} » a été sélectionnée pour suppression.</p>{% if expedition %}<form method="post"><div class="form-actions" style="justify-content:center">{% csrf_token %}<button class="button danger" type="submit">Supprimer</button><a class="button secondary" href="{% url 'Expedition:list_class' %}">Annuler</a></div></form>{% else %}<div class="form-actions" style="justify-content:center"><a class="button secondary" href="{% url 'Expedition:list_expeditions' %}">Retour à la liste</a></div>{% endif %}</section>{% endblock %}

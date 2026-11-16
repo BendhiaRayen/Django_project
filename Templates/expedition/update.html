@@ -1,1 +1,18 @@
-{% extends "expedition/base.html" %}{% block title %}Modifier l'expédition{% endblock %}{% block content %}<p class="eyebrow">Mise à jour</p><h1>Modifier l'expédition</h1><p class="subtle">Actualisez les détails de cette opération sans perdre son historique.</p><section class="card form-card" style="margin-top:30px"><form method="post">{% csrf_token %}{{ form.as_p }}<div class="form-actions"><button class="button" type="submit">Mettre à jour</button><a class="button secondary" href="{% url 'Expedition:list_class' %}">Annuler</a></div></form></section>{% endblock %}
+{% extends "expedition/base.html" %}{% block title %}Modifier l'expédition{% endblock %}{% block content %}
+<p class="eyebrow">Mise à jour</p>
+<h1>Modifier l'expédition</h1>
+<p class="subtle">
+  Actualisez les détails de cette opération sans perdre son historique.
+</p>
+<section class="card form-card" style="margin-top: 30px">
+  <form method="post">
+    {% csrf_token %}{{ form.as_p }}
+    <div class="form-actions">
+      <button class="button" type="submit">Mettre à jour</button
+      ><a class="button secondary" href="{% url 'Expedition:list_class' %}"
+        >Annuler</a
+      >
+    </div>
+  </form>
+</section>
+{% endblock %}

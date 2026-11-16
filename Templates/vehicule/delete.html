@@ -1,0 +1,19 @@
+{% extends "expedition/base.html" %}{% block title %}Supprimer le véhicule{% endblock %}{% block content %}
+<section class="card confirm-card" style="margin: 48px auto 0">
+  <div class="confirm-icon">!</div>
+  <p class="eyebrow">Action irréversible</p>
+  <h1>Supprimer le véhicule ?</h1>
+  <p class="subtle">
+    Êtes-vous sûr de vouloir supprimer le véhicule « {{ object.immatriculation }} » ?
+  </p>
+  <form method="post">
+    <div class="form-actions" style="justify-content: center">
+      {% csrf_token %}<button class="button danger" type="submit">
+        Supprimer</button
+      ><a class="button secondary" href="{% url 'Vehicule:list_class' %}"
+        >Annuler</a
+      >
+    </div>
+  </form>
+</section>
+{% endblock %}

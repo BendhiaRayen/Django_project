@@ -1,0 +1,68 @@
+{% extends "expedition/base.html" %} {% block title %}Véhicules{% endblock %} {% block content %}
+<div class="page-head">
+  <div>
+    <p class="eyebrow">Ressources de transport</p>
+    <h1>Véhicules</h1>
+    <p class="subtle">
+      Gérez votre flotte et la disponibilité de chaque véhicule.
+    </p>
+  </div>
+  <a class="button" href="{% url 'Vehicule:create_vehicule' %}"
+    >＋ Nouveau véhicule</a
+  >
+</div>
+<section class="card table-card">
+  <div class="table-wrap">
+    <table class="expedition-list">
+      <thead>
+        <tr>
+          <th>Immatriculation</th>
+          <th>Type</th>
+          <th>Capacité</th>
+          <th>Entreprise</th>
+          <th>Disponibilité</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for vehicule in list %}
+        <tr>
+          <td>
+            <a
+              class="reference"
+              href="{% url 'Vehicule:detail_class' vehicule.pk %}"
+              >{{ vehicule.immatriculation }}</a
+            >
+          </td>
+          <td>{{ vehicule.get_type_vehicule_display }}</td>
+          <td>{{ vehicule.capacite_kg }} kg</td>
+          <td>{{ vehicule.entreprise }}</td>
+          <td>
+            <span class="status"
+              >{% if vehicule.disponibilite %}Disponible{% else %}Indisponible{% endif %}</span
+            >
+          </td>
+          <td>
+            <div class="actions">
+              <a
+                class="action-link"
+                href="{% url 'Vehicule:update_vehicule' vehicule.pk %}"
+                >Modifier</a
+              ><a
+                class="action-link delete"
+                href="{% url 'Vehicule:delete_class' vehicule.pk %}"
+                >Supprimer</a
+              >
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td class="empty" colspan="6">Aucun véhicule trouvé.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

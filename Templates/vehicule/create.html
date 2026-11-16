@@ -1,0 +1,18 @@
+{% extends "expedition/base.html" %}{% block title %}Nouveau véhicule{% endblock %}{% block content %}
+<p class="eyebrow">Gestion de flotte</p>
+<h1>Ajouter un véhicule</h1>
+<p class="subtle">
+  Enregistrez un nouveau véhicule et rattachez-le à un transporteur.
+</p>
+<section class="card form-card" style="margin-top: 30px">
+  <form method="post">
+    {% csrf_token %}{{ form.as_p }}
+    <div class="form-actions">
+      <button class="button" type="submit">Créer le véhicule</button
+      ><a class="button secondary" href="{% url 'Vehicule:list_class' %}"
+        >Annuler</a
+      >
+    </div>
+  </form>
+</section>
+{% endblock %}

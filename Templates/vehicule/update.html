@@ -1,0 +1,18 @@
+{% extends "expedition/base.html" %}{% block title %}Modifier le véhicule{% endblock %}{% block content %}
+<p class="eyebrow">Gestion de flotte</p>
+<h1>Modifier le véhicule</h1>
+<p class="subtle">
+  Mettez à jour les informations et la disponibilité de ce véhicule.
+</p>
+<section class="card form-card" style="margin-top: 30px">
+  <form method="post">
+    {% csrf_token %}{{ form.as_p }}
+    <div class="form-actions">
+      <button class="button" type="submit">Mettre à jour</button
+      ><a class="button secondary" href="{% url 'Vehicule:list_class' %}"
+        >Annuler</a
+      >
+    </div>
+  </form>
+</section>
+{% endblock %}

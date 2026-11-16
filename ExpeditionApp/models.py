@@ -21,6 +21,10 @@ class Expedition(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     entreprise = models.ForeignKey('EntrepriseApp.Entreprise', on_delete=models.CASCADE, related_name='expeditions')
+
+    def __str__(self):
+        return self.references
+
     def clean(self):
         super().clean()
         if self.entreprise_id and self.entreprise.type_entreprise != 'c':

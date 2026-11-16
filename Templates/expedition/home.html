@@ -1,19 +1,42 @@
 {% extends "expedition/base.html" %}
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil expéditions{% endblock %}
 {% block content %}
-<section class="card" style="position:relative;overflow:hidden;padding:clamp(34px,7vw,82px);background:linear-gradient(135deg,#171d35 0%,#302a73 58%,#635bff 100%);color:white;">
-    <div style="position:absolute;right:-90px;top:-130px;width:360px;height:360px;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 34px rgba(255,255,255,.035),0 0 0 68px rgba(255,255,255,.025);"></div>
-    <div style="position:relative;max-width:650px;">
-        <p class="eyebrow" style="color:#b9b5ff;">Plateforme logistique</p>
-        <h1 style="font-size:clamp(2.7rem,6vw,5rem);">Les expéditions, simplement.</h1>
-        <p style="max-width:540px;margin:24px 0 32px;color:#d8d8e8;font-size:1.06rem;line-height:1.75;">Centralisez vos envois, suivez chaque trajet et gardez une vision claire de votre activité logistique.</p>
-        <div class="form-actions" style="margin-top:0;"><a class="button" style="color:#322b78;background:#fff;box-shadow:none;" href="{% url 'Expedition:list_class' %}">Accéder aux expéditions&nbsp; →</a><a class="button" style="color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);box-shadow:none;" href="{% url 'Expedition:create_expedition' %}">Créer un envoi</a></div>
-    </div>
-</section>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;">
-    <div class="card" style="padding:23px;"><span style="font-size:1.5rem;">◈</span><h2 style="margin-top:14px;font-size:1.05rem;">Vue centralisée</h2><p class="subtle" style="font-size:.88rem;">Toutes vos expéditions réunies au même endroit.</p></div>
-    <div class="card" style="padding:23px;"><span style="font-size:1.5rem;">↗</span><h2 style="margin-top:14px;font-size:1.05rem;">Suivi précis</h2><p class="subtle" style="font-size:.88rem;">Accédez rapidement aux détails de chaque envoi.</p></div>
-    <div class="card" style="padding:23px;"><span style="font-size:1.5rem;">✓</span><h2 style="margin-top:14px;font-size:1.05rem;">Gestion fluide</h2><p class="subtle" style="font-size:.88rem;">Créez et mettez à jour vos opérations en quelques clics.</p></div>
+<div class="expedition-shell">
+  <section class="expedition-intro">
+    <div class="route-line"><span class="route-dot"></span><span></span><span class="route-dot route-dot-end"></span></div>
+    <p class="eyebrow">Centre des expéditions</p>
+    <h1>Chaque trajet, sous contrôle.</h1>
+    <p>Planifiez, suivez et mettez à jour vos envois depuis un espace pensé pour les opérations quotidiennes.</p>
+    <div class="form-actions expedition-actions"><a class="button" href="{% url 'Expedition:list_class' %}">Consulter les expéditions →</a><a class="button secondary" href="{% url 'Expedition:create_expedition' %}">Créer une expédition</a></div>
+  </section>
+  <aside class="dispatch-panel">
+    <span class="panel-kicker">Tableau de départ</span>
+    <div class="dispatch-number">01</div>
+    <h2>Flux logistiques</h2>
+    <p>Une visibilité simple sur les départs, les arrivées et les informations essentielles de chaque envoi.</p>
+    <div class="dispatch-meta"><span>Organisation</span><strong>FleetFlow</strong></div>
+    <div class="dispatch-meta"><span>Module</span><strong>Expédition</strong></div>
+  </aside>
 </div>
-<style>@media(max-width:700px){main>div[style*="grid-template-columns"]{grid-template-columns:1fr!important}}</style>
+<style>
+  .expedition-shell { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); min-height: 560px; overflow: hidden; border: 1px solid #eadfce; border-radius: 24px; background: #fffaf2; box-shadow: 0 18px 45px rgba(109, 78, 35, .09); }
+  .expedition-intro { position: relative; padding: clamp(34px, 7vw, 78px); background: #fffaf2; }
+  .expedition-intro h1 { max-width: 640px; color: #302820; font-size: clamp(2.7rem, 6vw, 5rem); }
+  .expedition-intro > p:not(.eyebrow) { max-width: 540px; margin: 24px 0 32px; color: #756b60; font-size: 1.06rem; line-height: 1.75; }
+  .expedition-intro .eyebrow { color: #c46a35; }
+  .route-line { display: flex; align-items: center; gap: 10px; width: 210px; margin-bottom: 70px; }
+  .route-line span:nth-child(2) { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, #d88a55 0 7px, transparent 7px 13px); }
+  .route-dot { width: 13px; height: 13px; border: 3px solid #d88a55; border-radius: 50%; background: #fffaf2; }
+  .route-dot-end { border-color: #c46a35; background: #c46a35; }
+  .expedition-actions .button { color: #fff; background: #c46a35; box-shadow: 0 10px 20px rgba(196, 106, 53, .2); }
+  .expedition-actions .button.secondary { color: #4d4135; background: transparent; border-color: #dfcdb9; box-shadow: none; }
+  .dispatch-panel { display: flex; flex-direction: column; justify-content: flex-end; padding: 34px; color: #fff; background: #302820; }
+  .panel-kicker { color: #e7ae7f; font-size: .74rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  .dispatch-number { margin-top: auto; color: #d88a55; font-size: 5rem; font-weight: 800; letter-spacing: -.08em; }
+  .dispatch-panel h2 { font-size: 1.35rem; }
+  .dispatch-panel p { color: #cfc3b8; line-height: 1.65; }
+  .dispatch-meta { display: flex; justify-content: space-between; gap: 20px; padding-top: 14px; margin-top: 14px; border-top: 1px solid #4d4135; color: #ad9e90; font-size: .83rem; }
+  .dispatch-meta strong { color: #fff; }
+  @media (max-width: 760px) { .expedition-shell { grid-template-columns: 1fr; } .dispatch-panel { min-height: 300px; } .route-line { margin-bottom: 42px; } }
+</style>
 {% endblock %}

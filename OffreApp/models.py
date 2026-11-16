@@ -18,6 +18,9 @@ class Offre(models.Model):
     transporteur = models.ForeignKey('EntrepriseApp.Entreprise', on_delete=models.CASCADE, related_name='offres_transport')
     vehicule = models.ForeignKey('VehiculeApp.Vehicule', on_delete=models.CASCADE, related_name='offres_vehicule')
 
+    def __str__(self):
+        return f"Offre {self.pk or 'nouvelle'} - {self.expedition.references if self.expedition_id else 'sans expédition'}"
+
     def clean(self):
         super().clean()
         if self.transporteur_id and self.transporteur.type_entreprise != 't':

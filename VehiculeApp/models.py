@@ -14,6 +14,9 @@ class Vehicule(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     entreprise = models.ForeignKey('EntrepriseApp.Entreprise', on_delete=models.CASCADE, related_name='vehicules')
 
+    def __str__(self):
+        return self.immatriculation
+
     def clean(self):
         super().clean()
         if self.entreprise_id and self.entreprise.type_entreprise != 't':

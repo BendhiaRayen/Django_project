@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ExpeditionApp.forms import ExpeditionForm
 from .models import Expedition
 # Create your views here.
@@ -22,25 +22,25 @@ def deleteExpedition(request, references):
     choix = Expedition.objects.get(references=references)
     choix.delete()
     return render(request, 'expedition/delete.html', {'choix': choix})
-class liste_expeditions(ListView):
+class liste_expeditions(LoginRequiredMixin,ListView):
     model = Expedition
     template_name = 'expedition/list.html'
     context_object_name = 'list'
-class detail_expedition(DetailView):
+class detail_expedition(LoginRequiredMixin,DetailView):
     model = Expedition
     template_name = 'expedition/detail.html'
     context_object_name = 'detail'
-class delete_expedition(DeleteView):
+class delete_expedition(LoginRequiredMixin,DeleteView):
     model = Expedition
     template_name = 'expedition/delete.html'
     success_url = reverse_lazy('Expedition:list_class')
-class CreateExpeditionView(CreateView):
+class CreateExpeditionView(LoginRequiredMixin,CreateView):
     model = Expedition
     template_name = 'expedition/create.html'
     #fields = '__all__'
     form_class = ExpeditionForm
     success_url = reverse_lazy('Expedition:list_class')
-class UpdateExpeditionView(UpdateView):
+class UpdateExpeditionView(LoginRequiredMixin,UpdateView):
     model = Expedition
     template_name = 'expedition/update.html'
     form_class = ExpeditionForm

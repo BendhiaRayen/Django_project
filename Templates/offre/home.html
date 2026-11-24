@@ -1,4 +1,4 @@
-{% extends "expedition/base.html" %}
+﻿{% extends "base.html" %}
 {% block title %}Accueil offres{% endblock %}
 {% block content %}
 <section class="offer-hero"><div class="offer-copy"><p class="eyebrow">Marché du transport</p><h1>La bonne offre, au bon moment.</h1><p>Comparez, proposez et gérez les offres de transport associées à vos expéditions.</p><div class="form-actions offer-actions"><a class="button" href="{% url 'Offre:list_class' %}">Voir les offres →</a><a class="button secondary" href="{% url 'Offre:create_offre' %}">Créer une offre</a></div></div><div class="offer-price"><span>OFFRE ACTIVE</span><strong>24/7</strong><small>Des décisions plus rapides</small></div></section>
@@ -6,3 +6,5 @@
 <style>.offer-hero{display:flex;align-items:center;justify-content:space-between;gap:45px;min-height:500px;padding:clamp(34px,7vw,78px);overflow:hidden;border-radius:24px;color:#fff;background:linear-gradient(120deg,#382044,#742f69 58%,#d06b65);box-shadow:0 18px 45px rgba(116,47,105,.16)}.offer-copy{max-width:680px}.offer-copy .eyebrow{color:#ffc5ba}.offer-copy h1{font-size:clamp(2.7rem,6vw,5rem)}.offer-copy>p:not(.eyebrow){max-width:550px;margin:24px 0 32px;color:#f2dce7;font-size:1.06rem;line-height:1.75}.offer-actions .button{color:#5f285b;background:#fff;box-shadow:none}.offer-actions .button.secondary{color:#fff;background:transparent;border-color:rgba(255,255,255,.35)}.offer-price{display:flex;flex-direction:column;align-items:center;justify-content:center;width:220px;height:220px;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(255,255,255,.1);transform:rotate(8deg)}.offer-price span{font-size:.7rem;font-weight:800;letter-spacing:.14em}.offer-price strong{font-size:4rem;letter-spacing:-.08em}.offer-price small{color:#f2dce7}.offer-features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}.offer-features>div{padding:23px;border:1px solid #eadce8;border-radius:18px;background:#fff8fc}.offer-features b{color:#5f285b}.offer-features p{margin:8px 0 0;color:#866d80;font-size:.88rem}@media(max-width:760px){.offer-hero{align-items:flex-start;flex-direction:column}.offer-price{align-self:center}.offer-features{grid-template-columns:1fr}}
 </style>
 {% endblock %}
+
+

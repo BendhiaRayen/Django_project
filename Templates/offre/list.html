@@ -1,6 +1,8 @@
-{% extends "expedition/base.html" %}
+﻿{% extends "base.html" %}
 {% block title %}Offres{% endblock %}
 {% block content %}
 <div class="page-head"><div><p class="eyebrow">Propositions de transport</p><h1>Offres</h1><p class="subtle">Comparez et suivez les propositions liées à vos expéditions.</p></div><a class="button" href="{% url 'Offre:create_offre' %}">＋ Nouvelle offre</a></div>
 <section class="card table-card"><div class="table-wrap"><table class="expedition-list"><thead><tr><th>Expédition</th><th>Transporteur</th><th>Véhicule</th><th>Prix</th><th>Délai</th><th>Statut</th><th></th></tr></thead><tbody>{% for offre in list %}<tr><td><a class="reference" href="{% url 'Offre:detail_class' offre.pk %}">{{ offre.expedition.references }}</a></td><td>{{ offre.transporteur }}</td><td>{{ offre.vehicule.immatriculation }}</td><td>{{ offre.prix }} €</td><td>{{ offre.delai_jours }} jours</td><td><span class="status">{{ offre.get_statut_display }}</span></td><td><div class="actions"><a class="action-link" href="{% url 'Offre:update_offre' offre.pk %}">Modifier</a><a class="action-link delete" href="{% url 'Offre:delete_class' offre.pk %}">Supprimer</a></div></td></tr>{% empty %}<tr><td class="empty" colspan="7">Aucune offre trouvée.</td></tr>{% endfor %}</tbody></table></div></section>
 {% endblock %}
+
+
